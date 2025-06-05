@@ -1,0 +1,415 @@
+Started by user Gaurav Bhatnagar
+Running as SYSTEM
+Building remotely on MasterNode (Jmaster) in workspace /home/gaurav/IGP/jenkins/master/workspace/Kube_deploy
+The recommended git tool is: NONE
+using credential 3a2ce85b-19e1-49a6-99c7-d97b8955b8fd
+ > git rev-parse --resolve-git-dir /home/gaurav/IGP/jenkins/master/workspace/Kube_deploy/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/gauravbkw/Gaurav_IGP.git # timeout=10
+Fetching upstream changes from https://github.com/gauravbkw/Gaurav_IGP.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.1'
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --force --progress -- https://github.com/gauravbkw/Gaurav_IGP.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 32c14bbd96db391a77eb19762d6820ba4e26e337 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 32c14bbd96db391a77eb19762d6820ba4e26e337 # timeout=10
+Commit message: "Dockerfile ABC Technologies"
+ > git rev-list --no-walk 32c14bbd96db391a77eb19762d6820ba4e26e337 # timeout=10
+[Kube_deploy] $ mvn package
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.abc:ABCtechnologies >-----------------------
+[INFO] Building RetailModule 1.0
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- jacoco-maven-plugin:0.8.6:prepare-agent (jacoco-initialize) @ ABCtechnologies ---
+[INFO] argLine set to -javaagent:/home/gaurav/.m2/repository/org/jacoco/org.jacoco.agent/0.8.6/org.jacoco.agent-0.8.6-runtime.jar=destfile=/home/gaurav/IGP/jenkins/master/workspace/Kube_deploy/target/jacoco.exec
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ ABCtechnologies ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/gaurav/IGP/jenkins/master/workspace/Kube_deploy/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ ABCtechnologies ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /home/gaurav/IGP/jenkins/master/workspace/Kube_deploy/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ ABCtechnologies ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/gaurav/IGP/jenkins/master/workspace/Kube_deploy/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ ABCtechnologies ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /home/gaurav/IGP/jenkins/master/workspace/Kube_deploy/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ ABCtechnologies ---
+[INFO] Surefire report directory: /home/gaurav/IGP/jenkins/master/workspace/Kube_deploy/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.abc.dataAccessObject.ProductImpTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.913 sec
+
+Results :
+
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-war-plugin:3.2.2:war (default-war) @ ABCtechnologies ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [ABCtechnologies] in [/home/gaurav/IGP/jenkins/master/workspace/Kube_deploy/target/ABCtechnologies-1.0]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/home/gaurav/IGP/jenkins/master/workspace/Kube_deploy/src/main/webapp]
+[INFO] Webapp assembled in [3680 msecs]
+[INFO] Building war: /home/gaurav/IGP/jenkins/master/workspace/Kube_deploy/target/ABCtechnologies-1.0.war
+[INFO] 
+[INFO] --- jacoco-maven-plugin:0.8.6:report (jacoco-site) @ ABCtechnologies ---
+[INFO] Loading execution data file /home/gaurav/IGP/jenkins/master/workspace/Kube_deploy/target/jacoco.exec
+[INFO] Analyzed bundle 'RetailModule' with 2 classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:27 min
+[INFO] Finished at: 2025-06-05T19:57:25+03:00
+[INFO] ------------------------------------------------------------------------
+[Kube_deploy] $ ansible-playbook /opt/playbooks/deploy_onKubernates.yaml -i /etc/ansible/hosts -f 5
+[WARNING]: Collection community.docker does not support Ansible version 2.14.18
+[WARNING]: Collection kubernetes.core does not support Ansible version 2.14.18
+
+PLAY [localhost] ***************************************************************
+
+TASK [Docker login] ************************************************************
+ok: [localhost]
+
+TASK [Build an image and push it to a repo] ************************************
+ok: [localhost]
+
+TASK [debug] *******************************************************************
+ok: [localhost] => {
+    "out": {
+        "actions": [
+            "Pushed image docker.io/dockergb1/gauravdevopspg to docker.io/dockergb1/gauravdevopspg:latest"
+        ],
+        "changed": false,
+        "failed": false,
+        "image": {
+            "Architecture": "amd64",
+            "Author": "",
+            "Comment": "buildkit.dockerfile.v0",
+            "Config": {
+                "ArgsEscaped": true,
+                "AttachStderr": false,
+                "AttachStdin": false,
+                "AttachStdout": false,
+                "Cmd": [
+                    "/bin/sh",
+                    "-c",
+                    "/usr/local/tomcat/bin/catalina.sh run"
+                ],
+                "Domainname": "",
+                "Entrypoint": null,
+                "Env": [
+                    "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                ],
+                "ExposedPorts": {
+                    "8080/tcp": {}
+                },
+                "Hostname": "",
+                "Image": "",
+                "Labels": {
+                    "org.opencontainers.image.ref.name": "ubuntu",
+                    "org.opencontainers.image.version": "24.04"
+                },
+                "OnBuild": null,
+                "OpenStdin": false,
+                "StdinOnce": false,
+                "Tty": false,
+                "User": "",
+                "Volumes": null,
+                "WorkingDir": ""
+            },
+            "Created": "2025-06-05T16:57:18.399978966+03:00",
+            "DockerVersion": "",
+            "GraphDriver": {
+                "Data": {
+                    "LowerDir": "/var/lib/docker/overlay2/z3km5tp6thnx3e240uw8odyw0/diff:/var/lib/docker/overlay2/hc04te0k82jkzn1q69hztwocp/diff:/var/lib/docker/overlay2/63ofhnhr40d25zy4tipyh8pjf/diff:/var/lib/docker/overlay2/44g7prlnzh5gxzmnaut33vg8i/diff:/var/lib/docker/overlay2/mujad3hujgu5df9l9dv2uzjq9/diff:/var/lib/docker/overlay2/u8mr7o6jushd9z2cg4cop81yb/diff:/var/lib/docker/overlay2/8mxodpw8ayhqkrj9wqpzbycvk/diff:/var/lib/docker/overlay2/0167ac5cb78963f3b79b5bb22180d886dd4e0202dcf448b1241b374df12786db/diff",
+                    "MergedDir": "/var/lib/docker/overlay2/jtupeciw9p9suza4tewfv8vah/merged",
+                    "UpperDir": "/var/lib/docker/overlay2/jtupeciw9p9suza4tewfv8vah/diff",
+                    "WorkDir": "/var/lib/docker/overlay2/jtupeciw9p9suza4tewfv8vah/work"
+                },
+                "Name": "overlay2"
+            },
+            "Id": "sha256:fde56b3a0c40fb8a53cb0c045ba7b2a19b750b7af8552c11940d4810c34962bc",
+            "Metadata": {
+                "LastTagTime": "2025-06-05T16:57:18.860387662+03:00"
+            },
+            "Os": "linux",
+            "Parent": "",
+            "RepoDigests": [
+                "dockergb1/gauravdevopspg@sha256:5034c960a9ec7484ee16a752ed034e808558804e38a617ff638a0837bc143cd8"
+            ],
+            "RepoTags": [
+                "dockergb1/gauravdevopspg:latest"
+            ],
+            "RootFS": {
+                "Layers": [
+                    "sha256:a8346d259389bc6221b4f3c61bad4e48087c5b82308e8f53ce703cfc8333c7b3",
+                    "sha256:1186abae67e48d13ef3d143425d7dc1fbf47a0b4a1cbf18559c721c3288800d0",
+                    "sha256:d251456d014d02725e2212ff1990d4e0e22a2ca313945c0a632f6b3e589917c3",
+                    "sha256:e45ef04c8a30200f940eaffd3b037ec069a51d22e8f919d147d2f0e919cee018",
+                    "sha256:995c05886c84f7f863abd9a1476fcc30b5f631357f95e0db8869e3f1c2ca7b93",
+                    "sha256:9ba453a323d151aecba391ac30da5cba47f06e2fc6afd8d3a519385671064184",
+                    "sha256:01de4c3920088e51db404221ca37741232286cc76fc0475672c3b0c599470f59",
+                    "sha256:df7fef8fbabd685d395c7fbd6a3b5ec78037187052a21aa68af79b98ad399a7c",
+                    "sha256:4d1db8f269fdc6fb85f8881dbd46f9d2b47e0626eb7901118c24c6ac8999af45"
+                ],
+                "Type": "layers"
+            },
+            "Size": 927460845,
+            "push_status": null
+        }
+    }
+}
+
+TASK [Start a container] *******************************************************
+ok: [localhost]
+
+TASK [Apply Kubernetes deployment] *********************************************
+changed: [localhost]
+
+TASK [debug] *******************************************************************
+ok: [localhost] => {
+    "out": {
+        "changed": false,
+        "container": {
+            "AppArmorProfile": "",
+            "Args": [
+                "-c",
+                "/usr/local/tomcat/bin/catalina.sh run"
+            ],
+            "Config": {
+                "AttachStderr": true,
+                "AttachStdin": false,
+                "AttachStdout": true,
+                "Cmd": [
+                    "/bin/sh",
+                    "-c",
+                    "/usr/local/tomcat/bin/catalina.sh run"
+                ],
+                "Domainname": "",
+                "Entrypoint": null,
+                "Env": [
+                    "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                ],
+                "ExposedPorts": {
+                    "8080/tcp": {}
+                },
+                "Hostname": "82ec7d58602d",
+                "Image": "dockergb1/gauravdevopspg",
+                "Labels": {
+                    "org.opencontainers.image.ref.name": "ubuntu",
+                    "org.opencontainers.image.version": "24.04"
+                },
+                "OnBuild": null,
+                "OpenStdin": false,
+                "StdinOnce": false,
+                "Tty": false,
+                "User": "",
+                "Volumes": null,
+                "WorkingDir": ""
+            },
+            "Created": "2025-06-05T14:57:19.395108701Z",
+            "Driver": "overlay2",
+            "ExecIDs": null,
+            "GraphDriver": {
+                "Data": {
+                    "ID": "82ec7d58602d07b75df04caaff274b7f1c388150281371f6da01cf7726856294",
+                    "LowerDir": "/var/lib/docker/overlay2/093522a8372a2e9c77eca0e6e4e3072158c79c42ee395291800bf30793a40430-init/diff:/var/lib/docker/overlay2/jtupeciw9p9suza4tewfv8vah/diff:/var/lib/docker/overlay2/z3km5tp6thnx3e240uw8odyw0/diff:/var/lib/docker/overlay2/hc04te0k82jkzn1q69hztwocp/diff:/var/lib/docker/overlay2/63ofhnhr40d25zy4tipyh8pjf/diff:/var/lib/docker/overlay2/44g7prlnzh5gxzmnaut33vg8i/diff:/var/lib/docker/overlay2/mujad3hujgu5df9l9dv2uzjq9/diff:/var/lib/docker/overlay2/u8mr7o6jushd9z2cg4cop81yb/diff:/var/lib/docker/overlay2/8mxodpw8ayhqkrj9wqpzbycvk/diff:/var/lib/docker/overlay2/0167ac5cb78963f3b79b5bb22180d886dd4e0202dcf448b1241b374df12786db/diff",
+                    "MergedDir": "/var/lib/docker/overlay2/093522a8372a2e9c77eca0e6e4e3072158c79c42ee395291800bf30793a40430/merged",
+                    "UpperDir": "/var/lib/docker/overlay2/093522a8372a2e9c77eca0e6e4e3072158c79c42ee395291800bf30793a40430/diff",
+                    "WorkDir": "/var/lib/docker/overlay2/093522a8372a2e9c77eca0e6e4e3072158c79c42ee395291800bf30793a40430/work"
+                },
+                "Name": "overlay2"
+            },
+            "HostConfig": {
+                "AutoRemove": false,
+                "Binds": null,
+                "BlkioDeviceReadBps": null,
+                "BlkioDeviceReadIOps": null,
+                "BlkioDeviceWriteBps": null,
+                "BlkioDeviceWriteIOps": null,
+                "BlkioWeight": 0,
+                "BlkioWeightDevice": null,
+                "CapAdd": null,
+                "CapDrop": null,
+                "Cgroup": "",
+                "CgroupParent": "",
+                "CgroupnsMode": "private",
+                "ConsoleSize": [
+                    0,
+                    0
+                ],
+                "ContainerIDFile": "",
+                "CpuCount": 0,
+                "CpuPercent": 0,
+                "CpuPeriod": 0,
+                "CpuQuota": 0,
+                "CpuRealtimePeriod": 0,
+                "CpuRealtimeRuntime": 0,
+                "CpuShares": 0,
+                "CpusetCpus": "",
+                "CpusetMems": "",
+                "DeviceCgroupRules": null,
+                "DeviceRequests": null,
+                "Devices": null,
+                "Dns": null,
+                "DnsOptions": null,
+                "DnsSearch": null,
+                "ExtraHosts": null,
+                "GroupAdd": null,
+                "IOMaximumBandwidth": 0,
+                "IOMaximumIOps": 0,
+                "IpcMode": "private",
+                "Isolation": "",
+                "Links": null,
+                "LogConfig": {
+                    "Config": {},
+                    "Type": "json-file"
+                },
+                "MaskedPaths": [
+                    "/proc/asound",
+                    "/proc/acpi",
+                    "/proc/interrupts",
+                    "/proc/kcore",
+                    "/proc/keys",
+                    "/proc/latency_stats",
+                    "/proc/timer_list",
+                    "/proc/timer_stats",
+                    "/proc/sched_debug",
+                    "/proc/scsi",
+                    "/sys/firmware",
+                    "/sys/devices/virtual/powercap"
+                ],
+                "Memory": 0,
+                "MemoryReservation": 0,
+                "MemorySwap": 0,
+                "MemorySwappiness": null,
+                "NanoCpus": 0,
+                "NetworkMode": "bridge",
+                "OomKillDisable": null,
+                "OomScoreAdj": 0,
+                "PidMode": "",
+                "PidsLimit": null,
+                "PortBindings": {
+                    "8080/tcp": [
+                        {
+                            "HostIp": "0.0.0.0",
+                            "HostPort": "8090"
+                        }
+                    ]
+                },
+                "Privileged": false,
+                "PublishAllPorts": false,
+                "ReadonlyPaths": [
+                    "/proc/bus",
+                    "/proc/fs",
+                    "/proc/irq",
+                    "/proc/sys",
+                    "/proc/sysrq-trigger"
+                ],
+                "ReadonlyRootfs": false,
+                "RestartPolicy": {
+                    "MaximumRetryCount": 0,
+                    "Name": "no"
+                },
+                "Runtime": "runc",
+                "SecurityOpt": null,
+                "ShmSize": 67108864,
+                "UTSMode": "",
+                "Ulimits": null,
+                "UsernsMode": "",
+                "VolumeDriver": "",
+                "VolumesFrom": null
+            },
+            "HostnamePath": "/var/lib/docker/containers/82ec7d58602d07b75df04caaff274b7f1c388150281371f6da01cf7726856294/hostname",
+            "HostsPath": "/var/lib/docker/containers/82ec7d58602d07b75df04caaff274b7f1c388150281371f6da01cf7726856294/hosts",
+            "Id": "82ec7d58602d07b75df04caaff274b7f1c388150281371f6da01cf7726856294",
+            "Image": "sha256:fde56b3a0c40fb8a53cb0c045ba7b2a19b750b7af8552c11940d4810c34962bc",
+            "LogPath": "/var/lib/docker/containers/82ec7d58602d07b75df04caaff274b7f1c388150281371f6da01cf7726856294/82ec7d58602d07b75df04caaff274b7f1c388150281371f6da01cf7726856294-json.log",
+            "MountLabel": "",
+            "Mounts": [],
+            "Name": "/gauravdocker_igp",
+            "NetworkSettings": {
+                "Bridge": "",
+                "EndpointID": "22343e6c511274f94f26a9aebdffa983e21d3a35b6f07438a1a6e36d372c2285",
+                "Gateway": "172.17.0.1",
+                "GlobalIPv6Address": "",
+                "GlobalIPv6PrefixLen": 0,
+                "HairpinMode": false,
+                "IPAddress": "172.17.0.3",
+                "IPPrefixLen": 16,
+                "IPv6Gateway": "",
+                "LinkLocalIPv6Address": "",
+                "LinkLocalIPv6PrefixLen": 0,
+                "MacAddress": "e2:f3:d5:f1:d5:9b",
+                "Networks": {
+                    "bridge": {
+                        "Aliases": null,
+                        "DNSNames": null,
+                        "DriverOpts": null,
+                        "EndpointID": "22343e6c511274f94f26a9aebdffa983e21d3a35b6f07438a1a6e36d372c2285",
+                        "Gateway": "172.17.0.1",
+                        "GlobalIPv6Address": "",
+                        "GlobalIPv6PrefixLen": 0,
+                        "GwPriority": 0,
+                        "IPAMConfig": null,
+                        "IPAddress": "172.17.0.3",
+                        "IPPrefixLen": 16,
+                        "IPv6Gateway": "",
+                        "Links": null,
+                        "MacAddress": "e2:f3:d5:f1:d5:9b",
+                        "NetworkID": "7d7918787094d67045b22dd22a58dd4660d475e80cca96a166387b08253115aa"
+                    }
+                },
+                "Ports": {
+                    "8080/tcp": [
+                        {
+                            "HostIp": "0.0.0.0",
+                            "HostPort": "8090"
+                        }
+                    ]
+                },
+                "SandboxID": "dba4c99e04f9d9aa6784cd0fc2a75b268d7b18977457a8f4b7730ff0665f3229",
+                "SandboxKey": "/var/run/docker/netns/dba4c99e04f9",
+                "SecondaryIPAddresses": null,
+                "SecondaryIPv6Addresses": null
+            },
+            "Path": "/bin/sh",
+            "Platform": "linux",
+            "ProcessLabel": "",
+            "ResolvConfPath": "/var/lib/docker/containers/82ec7d58602d07b75df04caaff274b7f1c388150281371f6da01cf7726856294/resolv.conf",
+            "RestartCount": 0,
+            "State": {
+                "Dead": false,
+                "Error": "",
+                "ExitCode": 0,
+                "FinishedAt": "0001-01-01T00:00:00Z",
+                "OOMKilled": false,
+                "Paused": false,
+                "Pid": 28627,
+                "Restarting": false,
+                "Running": true,
+                "StartedAt": "2025-06-05T14:57:19.580207103Z",
+                "Status": "running"
+            }
+        },
+        "failed": false
+    }
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=6    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+Finished: SUCCESS
