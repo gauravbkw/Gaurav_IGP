@@ -1,0 +1,38 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Docker login
+      docker_login:
+        username: dockergb1
+        password: dckr_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+    - name: Build an image and push it to a repo
+      community.docker.docker_image:
+        build:
+          path: "/opt/docker"
+        name: docker.io/dockergb1/gauravdevopspg
+        push: true
+        source: build
+      register: out
+
+    - debug:
+        var: out
+
+    - name: Start a container
+      community.docker.docker_container:
+        name: gauravdocker_igp
+        image: dockergb1/gauravdevopspg
+        state: started
+        ports:
+          - 8090:8080
+      register: out
+
+    - name: Apply Kubernetes deployment
+      kubernetes.core.k8s:
+        state: present
+        src: "/opt/playbooks/deployment.yml"  
+        kubeconfig: "/home/gaurav/.kube/config"
+
+    - debug:
+        var: out

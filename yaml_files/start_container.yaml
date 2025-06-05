@@ -1,0 +1,35 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Log in to Red Hat registry
+      command: docker login -u gauravbhatnagar.tcs@gmail.com -p G@urav123* registry.redhat.io
+
+    - name: Docker login
+      docker_login:
+        username: dockergb1
+        password: dckr_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+    - name: Build an image and push it to a repo
+      community.docker.docker_image:
+        build:
+          path: "/opt/docker"
+        name: docker.io/dockergb1/gauravdevopspg
+        push: true
+        source: build
+      register: out
+
+    - debug:
+        var: out
+
+    - name: Start a container
+      community.docker.docker_container:
+        name: gauravdocker_igp
+        image: dockergb1/gauravdevopspg
+        state: started
+        ports:
+          - 8090:8080
+      register: out
+
+    - debug:
+        var: out
