@@ -1,0 +1,362 @@
+Started by user Gaurav
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Gaurav
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Code Checkout - Master)
+[Pipeline] node
+Running on MasterNode in /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav
+[Pipeline] {
+[Pipeline] checkout
+The recommended git tool is: NONE
+No credentials specified
+Fetching changes from the remote Git repository
+ > git rev-parse --resolve-git-dir /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/.git # timeout=10
+ > git config remote.origin.url https://github.com/gauravbkw/GauravIGP.git # timeout=10
+Fetching upstream changes from https://github.com/gauravbkw/GauravIGP.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+ > git fetch --tags --force --progress -- https://github.com/gauravbkw/GauravIGP.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Checking out Revision 56ebcf5a744b8b05597af8dc9f3f40ff49e56d40 (refs/remotes/origin/main)
+Commit message: "Pipleline job running on two nodes"
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 56ebcf5a744b8b05597af8dc9f3f40ff49e56d40 # timeout=10
+ > git rev-list --no-walk 38b440e425da8ebb5082839077816be7ae4e3792 # timeout=10
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Code Checkout - Slave)
+[Pipeline] node
+Running on SalveNode in /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav
+[Pipeline] {
+[Pipeline] checkout
+The recommended git tool is: NONE
+No credentials specified
+Fetching changes from the remote Git repository
+Checking out Revision 56ebcf5a744b8b05597af8dc9f3f40ff49e56d40 (refs/remotes/origin/main)
+ > git rev-parse --resolve-git-dir /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/.git # timeout=10
+ > git config remote.origin.url https://github.com/gauravbkw/Gaurav_IGP.git # timeout=10
+Fetching upstream changes from https://github.com/gauravbkw/Gaurav_IGP.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+ > git fetch --tags --force --progress -- https://github.com/gauravbkw/Gaurav_IGP.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 56ebcf5a744b8b05597af8dc9f3f40ff49e56d40 # timeout=10
+Commit message: "Pipleline job running on two nodes"
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Code Compile - Slave)
+[Pipeline] node
+Running on SalveNode in /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav
+[Pipeline] {
+[Pipeline] sh
++ mvn compile
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------------< [0;36mcom.abc:ABCtechnologies[0;1m >-----------------------[m
+[[1;34mINFO[m] [1mBuilding RetailModule 1.0[m
+[[1;34mINFO[m] [1m--------------------------------[ war ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.8.6:prepare-agent[m [1m(jacoco-initialize)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] argLine set to -javaagent:/home/gaurav/.m2/repository/org/jacoco/org.jacoco.agent/0.8.6/org.jacoco.agent-0.8.6-runtime.jar=destfile=/home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/target/jacoco.exec
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:compile[m [1m(default-compile)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 3 source files to /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/target/classes
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  2.641 s
+[[1;34mINFO[m] Finished at: 2025-06-03T10:59:54+03:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Unit Test -Slave)
+[Pipeline] node
+Running on SalveNode in /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav
+[Pipeline] {
+[Pipeline] sh
++ mvn test
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------------< [0;36mcom.abc:ABCtechnologies[0;1m >-----------------------[m
+[[1;34mINFO[m] [1mBuilding RetailModule 1.0[m
+[[1;34mINFO[m] [1m--------------------------------[ war ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.8.6:prepare-agent[m [1m(jacoco-initialize)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] argLine set to -javaagent:/home/gaurav/.m2/repository/org/jacoco/org.jacoco.agent/0.8.6/org.jacoco.agent-0.8.6-runtime.jar=destfile=/home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/target/jacoco.exec
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:compile[m [1m(default-compile)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:testCompile[m [1m(default-testCompile)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 1 source file to /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/target/test-classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.12.4:test[m [1m(default-test)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Surefire report directory: /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.abc.dataAccessObject.ProductImpTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.038 sec
+
+Results :
+
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  2.284 s
+[[1;34mINFO[m] Finished at: 2025-06-03T10:59:57+03:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Code Packaging Slave)
+[Pipeline] node
+Running on SalveNode in /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav
+[Pipeline] {
+[Pipeline] sh
++ mvn package
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------------< [0;36mcom.abc:ABCtechnologies[0;1m >-----------------------[m
+[[1;34mINFO[m] [1mBuilding RetailModule 1.0[m
+[[1;34mINFO[m] [1m--------------------------------[ war ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.8.6:prepare-agent[m [1m(jacoco-initialize)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] argLine set to -javaagent:/home/gaurav/.m2/repository/org/jacoco/org.jacoco.agent/0.8.6/org.jacoco.agent-0.8.6-runtime.jar=destfile=/home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/target/jacoco.exec
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:compile[m [1m(default-compile)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:testCompile[m [1m(default-testCompile)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.12.4:test[m [1m(default-test)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Surefire report directory: /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.abc.dataAccessObject.ProductImpTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.039 sec
+
+Results :
+
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-war-plugin:3.2.2:war[m [1m(default-war)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Packaging webapp
+[[1;34mINFO[m] Assembling webapp [ABCtechnologies] in [/home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/target/ABCtechnologies-1.0]
+[[1;34mINFO[m] Processing war project
+[[1;34mINFO[m] Copying webapp resources [/home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/src/main/webapp]
+[[1;34mINFO[m] Webapp assembled in [120 msecs]
+[[1;34mINFO[m] Building war: /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/target/ABCtechnologies-1.0.war
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.8.6:report[m [1m(jacoco-site)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Loading execution data file /home/gaurav/GauravIGP/Jenkins/slave/workspace/Gaurav/target/jacoco.exec
+[[1;34mINFO[m] Analyzed bundle 'RetailModule' with 2 classes
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  2.900 s
+[[1;34mINFO[m] Finished at: 2025-06-03T11:00:01+03:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Code Compile Master)
+[Pipeline] node
+Running on MasterNode in /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav
+[Pipeline] {
+[Pipeline] sh
++ mvn compile
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------------< [0;36mcom.abc:ABCtechnologies[0;1m >-----------------------[m
+[[1;34mINFO[m] [1mBuilding RetailModule 1.0[m
+[[1;34mINFO[m] [1m--------------------------------[ war ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.8.6:prepare-agent[m [1m(jacoco-initialize)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] argLine set to -javaagent:/home/gaurav/.m2/repository/org/jacoco/org.jacoco.agent/0.8.6/org.jacoco.agent-0.8.6-runtime.jar=destfile=/home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/target/jacoco.exec
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:compile[m [1m(default-compile)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 3 source files to /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/target/classes
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  1.910 s
+[[1;34mINFO[m] Finished at: 2025-06-03T11:00:05+03:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Unit Test master)
+[Pipeline] node
+Running on MasterNode in /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav
+[Pipeline] {
+[Pipeline] sh
++ mvn test
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------------< [0;36mcom.abc:ABCtechnologies[0;1m >-----------------------[m
+[[1;34mINFO[m] [1mBuilding RetailModule 1.0[m
+[[1;34mINFO[m] [1m--------------------------------[ war ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.8.6:prepare-agent[m [1m(jacoco-initialize)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] argLine set to -javaagent:/home/gaurav/.m2/repository/org/jacoco/org.jacoco.agent/0.8.6/org.jacoco.agent-0.8.6-runtime.jar=destfile=/home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/target/jacoco.exec
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:compile[m [1m(default-compile)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:testCompile[m [1m(default-testCompile)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 1 source file to /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/target/test-classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.12.4:test[m [1m(default-test)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Surefire report directory: /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.abc.dataAccessObject.ProductImpTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 sec
+
+Results :
+
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  1.945 s
+[[1;34mINFO[m] Finished at: 2025-06-03T11:00:09+03:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Code Packaging master)
+[Pipeline] node
+Running on MasterNode in /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav
+[Pipeline] {
+[Pipeline] sh
++ mvn package
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------------< [0;36mcom.abc:ABCtechnologies[0;1m >-----------------------[m
+[[1;34mINFO[m] [1mBuilding RetailModule 1.0[m
+[[1;34mINFO[m] [1m--------------------------------[ war ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.8.6:prepare-agent[m [1m(jacoco-initialize)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] argLine set to -javaagent:/home/gaurav/.m2/repository/org/jacoco/org.jacoco.agent/0.8.6/org.jacoco.agent-0.8.6-runtime.jar=destfile=/home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/target/jacoco.exec
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:compile[m [1m(default-compile)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:testCompile[m [1m(default-testCompile)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.12.4:test[m [1m(default-test)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Surefire report directory: /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.abc.dataAccessObject.ProductImpTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.044 sec
+
+Results :
+
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-war-plugin:3.2.2:war[m [1m(default-war)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Packaging webapp
+[[1;34mINFO[m] Assembling webapp [ABCtechnologies] in [/home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/target/ABCtechnologies-1.0]
+[[1;34mINFO[m] Processing war project
+[[1;34mINFO[m] Copying webapp resources [/home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/src/main/webapp]
+[[1;34mINFO[m] Webapp assembled in [46 msecs]
+[[1;34mINFO[m] Building war: /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/target/ABCtechnologies-1.0.war
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.8.6:report[m [1m(jacoco-site)[m @ [36mABCtechnologies[0;1m ---[m
+[[1;34mINFO[m] Loading execution data file /home/gaurav/GauravIGP/Jenkins/master/workspace/Gaurav/target/jacoco.exec
+[[1;34mINFO[m] Analyzed bundle 'RetailModule' with 2 classes
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  2.151 s
+[[1;34mINFO[m] Finished at: 2025-06-03T11:00:12+03:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
