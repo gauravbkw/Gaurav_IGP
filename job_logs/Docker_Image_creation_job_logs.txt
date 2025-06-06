@@ -1,0 +1,169 @@
+Started by user Gaurav Bhatnagar
+Running as SYSTEM
+Building remotely on MasterNode (Jmaster) in workspace /home/gaurav/IGP/jenkins/master/workspace/Docker_Container_Prepration
+The recommended git tool is: NONE
+using credential 3a2ce85b-19e1-49a6-99c7-d97b8955b8fd
+ > git rev-parse --resolve-git-dir /home/gaurav/IGP/jenkins/master/workspace/Docker_Container_Prepration/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/gauravbkw/Gaurav_IGP.git # timeout=10
+Fetching upstream changes from https://github.com/gauravbkw/Gaurav_IGP.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.1'
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --force --progress -- https://github.com/gauravbkw/Gaurav_IGP.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 32c14bbd96db391a77eb19762d6820ba4e26e337 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 32c14bbd96db391a77eb19762d6820ba4e26e337 # timeout=10
+Commit message: "Dockerfile ABC Technologies"
+ > git rev-list --no-walk 32c14bbd96db391a77eb19762d6820ba4e26e337 # timeout=10
+[Docker_Container_Prepration] $ mvn package
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.abc:ABCtechnologies >-----------------------
+[INFO] Building RetailModule 1.0
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- jacoco-maven-plugin:0.8.6:prepare-agent (jacoco-initialize) @ ABCtechnologies ---
+[INFO] argLine set to -javaagent:/home/gaurav/.m2/repository/org/jacoco/org.jacoco.agent/0.8.6/org.jacoco.agent-0.8.6-runtime.jar=destfile=/home/gaurav/IGP/jenkins/master/workspace/Docker_Container_Prepration/target/jacoco.exec
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ ABCtechnologies ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/gaurav/IGP/jenkins/master/workspace/Docker_Container_Prepration/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ ABCtechnologies ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /home/gaurav/IGP/jenkins/master/workspace/Docker_Container_Prepration/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ ABCtechnologies ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/gaurav/IGP/jenkins/master/workspace/Docker_Container_Prepration/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ ABCtechnologies ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /home/gaurav/IGP/jenkins/master/workspace/Docker_Container_Prepration/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ ABCtechnologies ---
+[INFO] Surefire report directory: /home/gaurav/IGP/jenkins/master/workspace/Docker_Container_Prepration/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.abc.dataAccessObject.ProductImpTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.223 sec
+
+Results :
+
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-war-plugin:3.2.2:war (default-war) @ ABCtechnologies ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [ABCtechnologies] in [/home/gaurav/IGP/jenkins/master/workspace/Docker_Container_Prepration/target/ABCtechnologies-1.0]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/home/gaurav/IGP/jenkins/master/workspace/Docker_Container_Prepration/src/main/webapp]
+[INFO] Webapp assembled in [543 msecs]
+[INFO] Building war: /home/gaurav/IGP/jenkins/master/workspace/Docker_Container_Prepration/target/ABCtechnologies-1.0.war
+[INFO] 
+[INFO] --- jacoco-maven-plugin:0.8.6:report (jacoco-site) @ ABCtechnologies ---
+[INFO] Loading execution data file /home/gaurav/IGP/jenkins/master/workspace/Docker_Container_Prepration/target/jacoco.exec
+[INFO] Analyzed bundle 'RetailModule' with 2 classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  26.530 s
+[INFO] Finished at: 2025-06-05T16:57:12+03:00
+[INFO] ------------------------------------------------------------------------
+[Docker_Container_Prepration] $ docker build -t dockergb1/gauravdevopspg --pull=true /home/gaurav/IGP/jenkins/master/workspace/Docker_Container_Prepration
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 581B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:24.04
+#2 ...
+
+#3 [auth] library/ubuntu:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:24.04
+#2 DONE 3.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/9] FROM docker.io/library/ubuntu:24.04@sha256:b59d21599a2b151e23eea5f6602f4af4d7d31c4e236d22bf0b62b86d2e386b8f
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 7.13MB 0.2s done
+#6 DONE 0.2s
+
+#7 [6/9] ADD https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.41/bin/apache-tomcat-10.1.41.tar.gz /tmp/apache-tomcat-10.1.41.tar.gz
+#7 DONE 0.9s
+
+#8 [3/9] RUN apt-get -y upgrade
+#8 CACHED
+
+#9 [4/9] RUN apt-get -y install openjdk-17-jdk wget
+#9 CACHED
+
+#10 [5/9] RUN mkdir /usr/local/tomcat
+#10 CACHED
+
+#11 [6/9] ADD https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.41/bin/apache-tomcat-10.1.41.tar.gz /tmp/apache-tomcat-10.1.41.tar.gz
+#11 CACHED
+
+#12 [7/9] RUN cd /tmp &&  tar xvfz apache-tomcat-10.1.41.tar.gz
+#12 CACHED
+
+#13 [2/9] RUN apt-get -y update
+#13 CACHED
+
+#14 [8/9] RUN cp -Rv /tmp/apache-tomcat-10.1.41/* /usr/local/tomcat/
+#14 CACHED
+
+#15 [9/9] ADD **/*.war /usr/local/tomcat/webapps/
+#15 DONE 0.3s
+
+#16 exporting to image
+#16 exporting layers
+#16 exporting layers 0.4s done
+#16 writing image sha256:fde56b3a0c40fb8a53cb0c045ba7b2a19b750b7af8552c11940d4810c34962bc done
+#16 naming to docker.io/dockergb1/gauravdevopspg done
+#16 DONE 0.5s
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - JSONArgsRecommended: JSON arguments recommended for CMD to prevent unintended behavior related to OS signals (line 11)
+[Docker_Container_Prepration] $ docker push dockergb1/gauravdevopspg
+Using default tag: latest
+The push refers to repository [docker.io/dockergb1/gauravdevopspg]
+4d1db8f269fd: Preparing
+df7fef8fbabd: Preparing
+01de4c392008: Preparing
+9ba453a323d1: Preparing
+995c05886c84: Preparing
+e45ef04c8a30: Preparing
+d251456d014d: Preparing
+1186abae67e4: Preparing
+a8346d259389: Preparing
+e45ef04c8a30: Waiting
+d251456d014d: Waiting
+a8346d259389: Waiting
+1186abae67e4: Waiting
+995c05886c84: Pushed
+4d1db8f269fd: Pushed
+d251456d014d: Pushed
+9ba453a323d1: Pushed
+df7fef8fbabd: Pushed
+01de4c392008: Pushed
+1186abae67e4: Pushed
+a8346d259389: Pushed
+e45ef04c8a30: Pushed
+latest: digest: sha256:5034c960a9ec7484ee16a752ed034e808558804e38a617ff638a0837bc143cd8 size: 2215
+[Docker_Container_Prepration] $ /bin/sh -xe /tmp/jenkins853209316998531968.sh
++ sudo docker run -d -P dockergb1/gauravdevopspg
+cb3492fcfe360ae0d09bac177d41884e17d5d70d279ef28ad28364a2690e0ef8
+Finished: SUCCESS
